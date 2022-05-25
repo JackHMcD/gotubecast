@@ -152,6 +152,7 @@ func main() {
 				"lounge_token": {tokenScreenItem.LoungeToken},
 				"screen_id":    {tokenScreenItem.ScreenId},
 				"screen_name":  {screenName},
+				"device_id":    {screenName},
 			})
 			if err != nil {
 				msgPrintln(fmt.Sprint("error ", err.Error()))
