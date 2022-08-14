@@ -1,7 +1,7 @@
-FROM frolvlad/alpine-bash
+FROM alpine:3.9
 
-COPY entrypoint.sh /
+RUN apk add --no-cache bash gawk sed grep bc coreutils curl
 
-RUN chmod +x /entrypoint.sh
+COPY curl-trigger.sh .
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["./curl-trigger.sh"]
