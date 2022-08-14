@@ -1,7 +1,6 @@
-FROM alpine:3.9
-
-RUN apk add --no-cache bash gawk sed grep bc coreutils curl
+FROM golang:bulseye
 
 COPY entrypoint.sh .
 
-CMD ["./entrypoint.sh"]
+RUN ["chmod", "+x", "entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
