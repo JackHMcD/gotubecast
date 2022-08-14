@@ -2,6 +2,6 @@ FROM alpine:3.9
 
 RUN apk add --no-cache bash gawk sed grep bc coreutils curl
 
-COPY curl-trigger.sh .
+COPY entrypoint.sh .
 
-CMD ["./curl-trigger.sh"]
+CMD ["./entrypoint.sh"]
