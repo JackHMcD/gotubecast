@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          platforms: linux/armhf
+          platforms: linux/amd64
           push: true
           tags: jackhmcd/gotest:latest
