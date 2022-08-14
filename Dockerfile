@@ -13,4 +13,4 @@ RUN go install -i .
 RUN pwd
 RUN ls
 RUN ["chmod", "+x", "entrypoint.sh"]
-ENTRYPOINT /go/src/github.com/jackhmcd/gotubecast/entrypoint.sh
+ENTRYPOINT go/src/github.com/jackhmcd/gotubecast/entrypoint.sh
