@@ -1,4 +1,4 @@
-# gotubecast
+# gotubecast.
 gotubecast is a small Go program which you can use to make your own YouTube TV player.
 
 It connects to the YouTube Leanback API and generates a text stream providing pairing codes, video IDs,
