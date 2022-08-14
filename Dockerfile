@@ -10,5 +10,7 @@ COPY . ${GOPATH}/src/github.com/jackhmcd/gotubecast/
 RUN go get -v .
 RUN go install -i .
 
+RUN pwd
+RUN ls
 RUN ["chmod", "+x", "entrypoint.sh"]
-ENTRYPOINT ./entrypoint.sh
+ENTRYPOINT ./${GOPATH}/src/github.com/jackhmcd/gotubecast/entrypoint.sh
