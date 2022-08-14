@@ -1,9 +1,5 @@
 FROM golang:alpine
 
-COPY install-packages.sh .
-RUN ["chmod", "+x", "install-packages.sh"]
-RUN ./install-packages.sh
-
 WORKDIR ${GOPATH}/src/github.com/jackhmcd/gotubecast/
 COPY . ${GOPATH}/src/github.com/jackhmcd/gotubecast/
 
