@@ -1,8 +1,5 @@
 FROM golang
 
-RUN echo "deb http://http.us.debian.org/debian unstable main non-free contrib" >> /etc/apt/sources.list && \
-    echo "deb-src http://http.us.debian.org/debian unstable main non-free contrib" >> /etc/apt/sources.list
-
 COPY install-packages.sh .
 RUN ["chmod", "+x", "install-packages.sh"]
 RUN ./install-packages.sh
