@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM frolvlad/alpine-bash
 
 COPY entrypoint.sh /
 
