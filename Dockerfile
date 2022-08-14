@@ -11,4 +11,4 @@ RUN go get -v .
 RUN go install -i .
 
 RUN ["chmod", "+x", "entrypoint.sh"]
-ENTRYPOINT ["sh","entrypoint.sh"]
+ENTRYPOINT ./entrypoint.sh
