@@ -1,4 +1,4 @@
-FROM golang:bulseye
+FROM golang:bullseye
 
 COPY entrypoint.sh .
 
