@@ -22,7 +22,7 @@ export OMX_OPTS="-o hdmi"
 
 export DISPLAY=:99
 Xvfb $DISPLAY -screen 0 1x1x8 &
-dbus-launch
+dbus-run-session
 
 function omxdbus {  	
 		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
