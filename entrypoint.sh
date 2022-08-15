@@ -20,7 +20,7 @@ export SCREEN_APP="pitubecast-v1"
 export OMX_OPTS="-o hdmi"
 #export POS="1"
 
-dbus-launch
+dbus-daemon
 
 function omxdbus {  	
 		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
