@@ -1,7 +1,8 @@
 FROM golang:alpine
 
 RUN apk add --no-cache --upgrade bash \
-    vlc
+    vlc \
+    dbus
 
 WORKDIR ${GOPATH}/src/github.com/jackhmcd/gotubecast/
 COPY . ${GOPATH}/src/github.com/jackhmcd/gotubecast/
