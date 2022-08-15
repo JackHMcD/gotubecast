@@ -47,7 +47,7 @@ do
         video_id)
             echo "you/$arg" 
 			killall -9 vlc 
-			cvlc --no-video --aout afile --audiofile-file /tmp/snapfifo -v "http://youtu.be/$arg" </dev/null &
+			cvlc --no-video --aout afile --audiofile-file /tmp/snapcast/snapfifo -v "http://youtu.be/$arg" </dev/null &
 			;;
         play | pause)
             omxdbus org.mpris.MediaPlayer2.Player.PlayPause >/dev/null
