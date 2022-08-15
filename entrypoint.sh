@@ -22,7 +22,6 @@ export OMX_OPTS="-o hdmi"
 
 export DISPLAY=:99
 Xvfb $DISPLAY -screen 0 1x1x8 &
-dbus-run-session
 
 function omxdbus {  	
 		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
@@ -36,7 +35,7 @@ function mult1000 () {
 		POS=$(( ${floor}${frac:0:3} ))
 }
 
-gotubecast -s "$SCREEN_ID" -n "$SCREEN_NAME" -i "$SCREEN_APP" | while read line
+dbus-run-session gotubecast -s "$SCREEN_ID" -n "$SCREEN_NAME" -i "$SCREEN_APP" | while read line
 do
     cmd="`cut -d ' ' -f1 <<< "$line"`"
     arg="`cut -d ' ' -f2 <<< "$line"`"
