@@ -21,7 +21,7 @@ export OMX_OPTS="-o hdmi"
 #export POS="1"
 
 export DISPLAY=:99
-xdpyinfo -display $DISPLAY > /dev/null || Xvfb $DISPLAY -screen 0 1x1x8 &
+Xvfb $DISPLAY -screen 0 1x1x8 &
 
 function omxdbus {  	
 		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
