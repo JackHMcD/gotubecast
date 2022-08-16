@@ -20,9 +20,6 @@ export SCREEN_APP="pitubecast-v1"
 export OMX_OPTS="-o hdmi"
 #export POS="1"
 
-export DISPLAY=:99
-Xvfb $DISPLAY -screen 0 1x1x8 &
-
 function omxdbus {  	
 		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
 }
@@ -35,7 +32,7 @@ function mult1000 () {
 		POS=$(( ${floor}${frac:0:3} ))
 }
 
-dbus-run-session gotubecast -s "$SCREEN_ID" -n "$SCREEN_NAME" -i "$SCREEN_APP" | while read line
+gotubecast -s "$SCREEN_ID" -n "$SCREEN_NAME" -i "$SCREEN_APP" | while read line
 do
     cmd="`cut -d ' ' -f1 <<< "$line"`"
     arg="`cut -d ' ' -f2 <<< "$line"`"
@@ -49,10 +46,10 @@ do
         video_id)
             echo "you/$arg" 
 			killall -9 vlc 
-			cvlc --no-video --aout afile --audiofile-file /tmp/snapcast/snapfifo -v "http://youtu.be/$arg" </dev/null &
+			cvlc -I oldrc --rc-unix /vlcsocket --no-video --aout afile --audiofile-file /tmp/snapcast/snapfifo -v "http://youtu.be/$arg" </dev/null &
 			;;
         play | pause)
-            omxdbus org.mpris.MediaPlayer2.Player.PlayPause >/dev/null
+            echo -n  "pause" | nc -U /vlcsocket
             ;;
         stop)
             omxdbus org.mpris.MediaPlayer2.Player.Stop >/dev/null
