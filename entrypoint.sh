@@ -20,10 +20,6 @@ export SCREEN_APP="pitubecast-v1"
 export OMX_OPTS="-o hdmi"
 #export POS="1"
 
-function omxdbus {  	
-		dbus-send --type=method_call --reply-timeout=12000 --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 $* 
-}
-
 function mult1000 () {
 		local floor=${1%.*}
       	[[ $floor = "0" ]] && floor=''
@@ -52,15 +48,14 @@ do
             echo -n  "pause" | nc -U /vlcsocket
             ;;
         stop)
-            omxdbus org.mpris.MediaPlayer2.Player.Stop >/dev/null
+            echo -n  "stop" | nc -U /vlcsocket
             ;;
         seek_to)
 			echo "Set Position: "$arg
 			mult1000 $arg
 			(( POS=$POS*1000 ))
 	    	STARTAGAIN64BIT=$(( -9223372036854775808 ))
-			omxdbus org.mpris.MediaPlayer2.Player.Seek int64:$STARTAGAIN64BIT >/dev/null 
-			omxdbus org.mpris.MediaPlayer2.Player.Seek int64:$POS >/dev/null
+			echo "seek" $POS
 			#Here had to abuse seek function....
 			;;
         set_volume)
@@ -68,7 +63,7 @@ do
                 VOL=`echo $arg / 100 | bc -l | awk '{printf "%0.2f\n", $1}'`
             fi
 			echo "Set Volume: " $VOL
-			omxdbus org.freedesktop.DBus.Properties.Set string:org.mpris.MediaPlayer2.Player string:Volume variant:double:$VOL >/dev/null
+			echo -n  "volume" $VOL | nc -U /vlcsocket
 			;;
     esac
 done
