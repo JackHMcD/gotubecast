@@ -3,7 +3,8 @@ FROM golang:alpine
 RUN apk add --no-cache --upgrade bash \
     vlc \
     dbus \
-    xvfb
+    xvfb \
+    netcat-openbsd
 
 WORKDIR ${GOPATH}/src/github.com/jackhmcd/gotubecast/
 COPY . ${GOPATH}/src/github.com/jackhmcd/gotubecast/
