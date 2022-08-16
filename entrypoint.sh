@@ -55,7 +55,7 @@ do
 			mult1000 $arg
 			(( POS=$POS*1000 ))
 	    	STARTAGAIN64BIT=$(( -9223372036854775808 ))
-			echo "seek" $POS | nc -U /vlcsocket
+			echo "seek $POS" | nc -U /vlcsocket
 			#Here had to abuse seek function....
 			;;
         set_volume)
@@ -63,7 +63,7 @@ do
                 VOL=`echo $arg | bc -l | awk '{printf "%0.2f\n", $1}'`
             fi
 			echo "Set Volume: " $VOL
-			echo -n  "volume" $VOL | nc -U /vlcsocket
+			echo -n  "volume $VOL" | nc -U /vlcsocket
 			;;
     esac
 done
