@@ -42,7 +42,7 @@ do
         video_id)
             echo "you/$arg" 
 			killall -9 vlc 
-			cvlc -I oldrc --rc-unix /vlcsocket --no-video --aout afile --audiofile-file /tmp/snapcast/snapfifo -v "http://youtu.be/$arg" </dev/null &
+			cvlc -I oldrc --rc-unix /vlcsocket --rc-fake-tty --no-video --aout afile --audiofile-file /tmp/snapcast/snapfifo -v "http://youtu.be/$arg" </dev/null &
 			;;
         play | pause)
             echo -n  "pause" | nc -U /vlcsocket
